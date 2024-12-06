@@ -1,0 +1,23 @@
+@using Codeer.LowCode.Blazor.OperatingModel
+@inherits FluentFieldComponentBase<TimeField, FluentTimeFieldDesign>
+
+<div class="d-flex align-items-center">
+  <FluentTimePicker @bind-Value:get="@MoreThanValue" @bind-Value:set="@OnMoreThanChanged" data-search-target="min"/>
+  <span>～</span>
+  <FluentTimePicker @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged" data-search-target="max"/>
+</div>
+
+@code {
+
+  private DateTime? LessThanValue => Field.SearchMax?.ToDateTime();
+  private DateTime? MoreThanValue => Field.SearchMin?.ToDateTime();
+
+  private async Task OnMoreThanChanged(DateTime? value) {
+    await Field.SetSearchMinAsync(value.ToTimeOnlyNullable());
+  }
+
+  private async Task OnLessThanChanged(DateTime? value) {
+    await Field.SetSearchMaxAsync(value.ToTimeOnlyNullable());
+  }
+
+}

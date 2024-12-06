@@ -1,0 +1,26 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Internal
+@using Codeer.LowCode.Blazor.OperatingModel
+@inherits FluentFieldComponentBase<TimeField, FluentTimeFieldDesign>
+
+@if (IsViewMode) {
+  <span class="d-block py-2">@GetViewOnlyValue()</span>
+} else {
+  <FluentTimePicker @bind-Value:get="@GetValue" @bind-Value:set="@RaiseOnValueChanged"
+                    Disabled="@IsDisabled" ReadOnly="IsViewMode" Id="@WebElementId.DomSafeString()"/>
+}
+
+@code {
+
+  private bool IsDisabled => Field.IsEnabled == false;
+  private bool IsViewMode => Field.IsViewOnly;
+
+  private DateTime? GetValue => Field.Value?.ToDateTime();
+
+  private async Task RaiseOnValueChanged(DateTime? value) {
+    await Field.SetValueAsync(value.ToTimeOnlyNullable());
+  }
+
+  private string GetViewOnlyValue() => (Field.Design.SaveAsUtc ? GetValue?.ToLocalTime() : GetValue)?.ToString("HH:mm:ss") ?? "";
+
+}

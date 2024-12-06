@@ -1,0 +1,29 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Properties
+@using Codeer.LowCode.Blazor.OperatingModel
+@using Codeer.LowCode.Blazor.Repository.Match
+@inherits FluentFieldComponentBase<TextField, FluentTextFieldDesign>
+
+<div class="d-flex">
+  <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="@OnChange" Id="@WebElementId"/>
+  <FluentSelect TOption="string" @bind-Value:get="@Comparison" @bind-Value:set="@OnComparisonChange">
+    <FluentOption Value="Like">@Resource.SearchField_MatchCondition_Like</FluentOption>
+    <FluentOption Value="Equal">@Resource.SearchField_MatchCondition_Equals</FluentOption>
+  </FluentSelect>
+</div>
+
+@code {
+
+  private string? Value => Field.SearchValue;
+
+  private string Comparison => Field.SearchComparison.ToString();
+
+  private async Task OnChange(string? value) {
+    await Field.SetSearchValueAsync(value);
+  }
+
+  private async Task OnComparisonChange(string? value) {
+    if (value == null) return;
+    await Field.SetSearchComparisonAsync(Enum.Parse<MatchComparison>(value));
+  }
+
+}

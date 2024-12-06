@@ -1,0 +1,19 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@inherits FluentFieldComponentBase<ButtonField, FluentButtonFieldDesign>
+
+<FluentButton Id="@WebElementId.DomSafeString()" Appearance="FluentDesign.Appearance" Disabled="@IsDisabled" OnClick="RaiseOnClick" >
+  @Label
+</FluentButton>
+
+@code {
+  private string? Label => Field.Design.Text;
+  private bool IsDisabled => Field.IsEnabled == false || IsViewMode;
+  private bool IsViewMode => Field.IsViewOnly;
+
+  [Parameter]
+  public bool IsBlock { get; set; } = true;
+
+  private Task RaiseOnClick() => Field.InvokeOnClick();
+
+}

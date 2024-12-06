@@ -1,0 +1,41 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.Repository.Design
+@using Codeer.LowCode.Blazor.OperatingModel
+@using Microsoft.AspNetCore.Components.Web
+@inherits FluentFieldComponentBase<RadioButtonField, FluentRadioButtonFieldDesign>
+
+@if (Field.ModuleLayoutType == ModuleLayoutType.List && Field.IsViewOnly) {
+  <span class="d-block py-2">
+    @Field.Value
+  </span>
+} else {
+  <FluentRadioGroup Disabled="@(IsDisabled || IsViewMode)" @bind-Value:get="@IsChecked" @bind-Value:set="OnChange">
+    <FluentRadio TValue="bool" Value="false" class="d-none"/>
+    <FluentRadio TValue="bool" Value="true" Label="@Label" Id="@WebElementId.DomSafeString()"/>
+  </FluentRadioGroup>
+}
+
+@code {
+  private bool IsDisabled => Field.IsEnabled == false;
+  private bool IsViewMode => Field.IsViewOnly;
+  private string Label => Field.Design.Text;
+  private bool? _tempValue;
+
+  private bool IsChecked {
+    get {
+      if (_tempValue != null) {
+        var ret = _tempValue;
+        _tempValue = null;
+        return ret == true;
+      }
+
+      return Field.Value;
+    }
+  }
+
+  private async void OnChange(bool value) {
+    if (value == false) return;
+    await Field.SetCheckAsync();
+  }
+
+}

@@ -1,0 +1,33 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@inherits FluentFieldComponentBase<DateField, FluentDateFieldDesign>
+
+@if (IsViewMode) {
+  <span class="d-block py-2">@GetViewOnlyValue()</span>
+} else {
+  <FluentDatePicker @bind-Value:get="@GetValue" @bind-Value:set="@RaiseOnValueChanged"
+                    Id="@WebElementId.DomSafeString()" Disabled="@IsDisabled" ReadOnly="IsViewMode" />
+}
+
+@code {
+
+  private bool IsDisabled => Field.IsEnabled == false;
+  private bool IsViewMode => Field.IsViewOnly;
+
+  private DateTime? GetValue => Field.Value?.ToDateTime(TimeOnly.MinValue);
+
+  private async Task RaiseOnValueChanged(DateTime? value) {
+    await Field.SetValueAsync(value.ToDateOnlyNullable());
+  }
+
+  private string GetViewOnlyValue() {
+    var value = Field.Services.AppInfoService.IsDesignMode ? new DateOnly(2024, 5, 13) : Field.Value;
+    try {
+      return value?.ToString(Field.Design.Format) ?? string.Empty;
+    }
+    catch (FormatException) {
+      return value?.ToString() ?? string.Empty;
+    }
+  }
+
+}

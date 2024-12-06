@@ -1,0 +1,58 @@
+@using Codeer.LowCode.Blazor.OperatingModel
+@using Microsoft.AspNetCore.Components.Web;
+@using Codeer.LowCode.Blazor.RequestInterfaces
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Internal.Components
+@inherits FluentFieldComponentBase<RadioGroupField, FluentRadioGroupFieldDesign>
+@inject Services Services
+
+<div class="root">
+  <div class="input-group">
+    @if (Field.Design.AllowOrSearch) {
+      <FluentSelect TOption="string" @bind-SelectedValues:get="SelectedValues" @bind-SelectedValues:set="@OnChangeItems"
+                    Multiple="true">
+        @foreach (var item in ItemsSource) {
+          <FluentOption Value="@item.Value">@item.Key</FluentOption>
+        }
+      </FluentSelect>
+    } else {
+      <FluentSelect TOption="string" @bind-Value:get="@SelectedValue" @bind-Value:set="@OnChange">
+        <FluentOption Value="@("")"/>
+        @foreach (var item in ItemsSource) {
+          <FluentOption Value="@item.Value">@item.Key</FluentOption>
+        }
+      </FluentSelect>
+    }
+  </div>
+  <div class="not-button">
+    <InternalFluentToggleButton Label="Not" @bind-Value:get="@Field.IsInverted" @bind-Value:set="@OnChangeFlag"
+                                Color="MudDesign.Color"/>
+  </div>
+</div>
+
+@code {
+  private string SelectedValue => Field.SearchValue ?? string.Empty;
+  private IEnumerable<string> SelectedValues => Field.SearchValues.Where(s => s is not null).ToList()!;
+  private Dictionary<string, string> ItemsSource => GetItemsSource();
+
+  private Dictionary<string, string> GetItemsSource() {
+    if (Services.AppInfoService.IsDesignMode) {
+      return new() { { "Item1", "Value1" }, { "Item2", "Value2" } };
+    }
+
+    return Field.DisplayTextAndValue;
+  }
+
+  private async Task OnChange(string? value) {
+    if (string.IsNullOrEmpty(value)) value = null;
+    await Field.SetSearchValueAsync(value);
+  }
+
+  private async Task OnChangeItems(IEnumerable<string> obj) {
+    await Field.SetSearchValuesAsync(obj);
+  }
+
+  private async Task OnChangeFlag(bool isChecked) {
+    await Field.SetNotFlag(isChecked);
+  }
+
+}

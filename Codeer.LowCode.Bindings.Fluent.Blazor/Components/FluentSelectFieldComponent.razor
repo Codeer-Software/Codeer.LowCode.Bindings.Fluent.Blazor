@@ -1,0 +1,73 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@using Codeer.LowCode.Blazor.Repository.Design
+@using Microsoft.AspNetCore.Components.Web
+@inherits FluentFieldComponentBase<SelectField, FluentSelectFieldDesign>
+
+@if (IsViewMode) {
+  <span class="d-block py-2">@(ViewOnlyValue)</span>
+} else {
+  <FluentSelect TOption="Option" Items="GetOptions()" Id="@WebElementId.DomSafeString()" @bind-Value:get="SelectedValue"
+                @bind-Value:set="@OnChange" OptionText="@((Option option) => option.Text)"
+                OptionValue="@((Option option) => option.Value)" Disabled="@IsDisabled" @bind-Open:get="_isOpen"
+                @bind-Open:set="OnOpen"/>
+}
+
+@code {
+  private bool IsDisabled => Field.IsEnabled == false;
+  private bool IsViewMode => Field.IsViewOnly;
+  private bool _isOpen;
+
+  private string? _bugFixValue;
+
+  private string? SelectedValue {
+    get {
+      if (_bugFixValue != null) {
+        //一度不具合回避用の文字列を返す
+        var ret = _bugFixValue;
+        _bugFixValue = null;
+        StateHasChanged();
+        return ret;
+      }
+
+      return Field.Value;
+    }
+  }
+
+  private Dictionary<string, string> ItemsSource => Field.DisplayTextAndValue;
+  private string? ViewOnlyValue => Field.Services.AppInfoService.IsDesignMode ? "Select" : Field.DisplayText;
+
+  private async Task OnChange(string? value) {
+    if (string.IsNullOrEmpty(value)) {
+      value = Field.Design.EmptyCandidateType == SelectEmptyCandidateType.StringEmpty ? string.Empty : null;
+    }
+
+    await Field.SetValueAsync(value);
+  }
+
+  private void OnOpen(bool isOpen) {
+    _isOpen = isOpen;
+    if (isOpen) {
+      _ = OnFocus();
+    }
+  }
+
+  private async Task OnFocus() {
+    //ここで候補を変えた後、選択文字列が消えてしまう
+    //そのため一瞬候補外の文字列を設定して再度正しい値を設定するという手法を使う
+    if (await Field.OnFocusAsync()) _bugFixValue = Guid.NewGuid().ToString();
+  }
+
+  private IEnumerable<Option> GetOptions() {
+    if (Field.Design.EmptyCandidateType != SelectEmptyCandidateType.NotExist) {
+      yield return new Option(string.Empty, string.Empty);
+    }
+
+    foreach (var item in ItemsSource) {
+      yield return new Option(item.Key, item.Value);
+    }
+  }
+
+  private record Option(string Text, string Value);
+
+}

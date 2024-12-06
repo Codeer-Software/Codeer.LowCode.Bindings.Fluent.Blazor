@@ -1,0 +1,29 @@
+﻿<div>
+  <FluentButton Appearance="@(Value ? Appearance.Accent : Appearance.Outline)" OnClick="Callback" Id="@Id">
+    @Label
+  </FluentButton>
+</div>
+
+@code {
+
+  [Parameter]
+  public string? Label { get; set; }
+
+  [Parameter]
+  public bool Value { get; set; }
+
+  [Parameter]
+  public bool Disabled { get; set; }
+
+  [Parameter]
+  public EventCallback<bool> ValueChanged { get; set; }
+
+  [Parameter]
+  public string Id { get; set; } = "";
+
+  private void Callback() {
+    Value = !Value;
+    ValueChanged.InvokeAsync(Value);
+  }
+
+}

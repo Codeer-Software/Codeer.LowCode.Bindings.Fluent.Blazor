@@ -1,0 +1,66 @@
+@using Codeer.LowCode.Blazor.Components.Dialog
+@using Codeer.LowCode.Blazor.Components.Renderer
+@using Codeer.LowCode.Blazor.OperatingModel
+@using Codeer.LowCode.Blazor.Repository.Match
+@inherits FluentFieldComponentBase<LinkField, FluentLinkFieldDesign>
+
+<FluentStack>
+  @if (IsSelectOnly) {
+    <FluentTextField Value="@Field.DisplayText" ReadOnly="true">
+      @if (HasValue) {
+        <FluentIcon OnClick="@Clear" Slot="end" Value="@(new Icons.Regular.Size16.Delete())"/>
+      }
+    </FluentTextField>
+  } else {
+    <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="OnChange"/>
+  }
+  <FluentButton IconEnd="@(new Icons.Regular.Size16.Search())" OnClick="OpenModal" data-system="search"/>
+</FluentStack>
+
+<ModalBase @bind-IsOpen="_isModalOpen" Title="Search" Size="modal-lg">
+  @if (_isModalOpen) {
+    <LinkTableRenderer SearchConditions="@SearchConditions" ItemSelected="OnItemSelected"
+                       ModuleDesign="Field.Module.Design" LinkFieldDesign="Field.Design"/>
+  }
+</ModalBase>
+
+@code {
+
+  private string? Value => Field.SearchValue;
+  private bool _isModalOpen = false;
+
+  private bool IsSelectOnly => !string.IsNullOrEmpty(Field.Design.DisplayTextVariable);
+  private bool HasValue => Value != null;
+
+  [Parameter]
+  public SearchCondition? SearchConditions { get; set; }
+
+  protected override async Task OnParametersSetAsync() {
+    await base.OnParametersSetAsync();
+    if (IsSelectOnly && !string.IsNullOrEmpty(Value) && string.IsNullOrEmpty(Field.DisplayText)) {
+      Field.DisplayText = await Field.GetLinkDisplayText(Value);
+    }
+  }
+
+  private void OpenModal() => _isModalOpen = true;
+
+  private void CloseModal() => _isModalOpen = false;
+
+  private async void OnItemSelected(Module obj) {
+    // ここはValueVariableの値じゃないとあかん
+    await Field.SetSearchValueAsync(LinkField.GetLinkValue(Field.Design, obj));
+    // こっちはDisplayTextVariableの値
+    Field.DisplayText = LinkField.GetLinkDisplayText(Field.Design, obj);
+    CloseModal();
+  }
+
+  private async void Clear() {
+    await Field.SetSearchValueAsync(null);
+    Field.DisplayText = string.Empty;
+  }
+
+  private async Task OnChange(string? value) {
+    await Field.SetSearchValueAsync(value);
+  }
+
+}

@@ -1,0 +1,16 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@inherits FluentFieldComponentBase<SubmitButtonField, FluentSubmitButtonFieldDesign>
+
+<FluentButton Disabled="IsDisabled" OnClick="@RaiseOnClick" Id="@WebElementId.DomSafeString()" Appearance="FluentDesign.Appearance">
+  @Label
+</FluentButton>
+
+@code {
+  private string? Label => Field.Design.Text;
+  private bool IsDisabled => Field.IsEnabled == false || IsViewMode;
+  private bool IsViewMode => Field.IsViewOnly;
+
+  private Task RaiseOnClick() => Field.InvokeOnClick();
+
+}

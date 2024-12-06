@@ -1,0 +1,26 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@inherits FluentFieldComponentBase<NumberField, FluentNumberFieldDesign>
+
+<div class="d-flex align-items-center">
+  <FluentNumberField @bind-Value:get="@MoreThanValue" @bind-Value:set="@OnMoreThanChanged"
+                     Id="@WebElementId.DomSafeString()" data-search-target="min"/>
+  <span>～</span>
+  <FluentNumberField @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged"
+                     data-search-target="max"/>
+</div>
+
+@code {
+
+  private decimal? LessThanValue => Field.SearchMax;
+  private decimal? MoreThanValue => Field.SearchMin;
+
+  private async Task OnMoreThanChanged(decimal? value) {
+    await Field.SetSearchMinAsync(value);
+  }
+
+  private async Task OnLessThanChanged(decimal? value) {
+    await Field.SetSearchMaxAsync(value);
+  }
+
+}

@@ -1,0 +1,34 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@inherits FluentFieldComponentBase<NumberField, FluentNumberFieldDesign>
+
+@if (IsViewMode) {
+  <span class="d-block py-2">@GetViewOnlyValue()</span>
+} else {
+  <FluentNumberField @bind-Value:get="@Field.Value" @bind-Value:set="@RaiseOnValueChanged"
+                     Disabled="@IsDisabled" ReadOnly="IsViewMode" Id="@WebElementId.DomSafeString()"
+                     Placeholder="@Placeholder" Max="@Max?.ToString()" Min="@Min?.ToString()"/>
+}
+
+@code {
+  private bool IsDisabled => Field.IsEnabled == false;
+  private bool IsViewMode => Field.IsViewOnly;
+  private string? Placeholder => Field.Design.Placeholder;
+  private decimal? Max => Field.Design.Max;
+  private decimal? Min => Field.Design.Min;
+
+  private async Task RaiseOnValueChanged(decimal? fieldValue) {
+    await Field.SetValueAsync(fieldValue);
+  }
+
+  private string GetViewOnlyValue() {
+    var value = Field.Services.AppInfoService.IsDesignMode ? 1000 : Field.Value;
+    try {
+      return value?.ToString(Field.Design.Format) ?? string.Empty;
+    }
+    catch (FormatException) {
+      return value?.ToString() ?? string.Empty;
+    }
+  }
+
+}

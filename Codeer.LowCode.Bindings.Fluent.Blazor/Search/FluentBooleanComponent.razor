@@ -1,0 +1,32 @@
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@using Microsoft.AspNetCore.Components.Web;
+@inherits FluentFieldComponentBase<BooleanField, FluentBooleanFieldDesign>
+
+<div class="input-group">
+  <FluentSelect TOption="Option" Items="GetOptions()" Id="@WebElementId.DomSafeString()" @bind-Value:get="Value!"
+                @bind-Value:set="OnChange" OptionText="@((Option option) => option.Text)"
+                OptionValue="@((Option option) => option.Value)"/>
+</div>
+
+@code {
+  private string? Value => Field.SearchValue?.ToString();
+
+  private bool? TryParse(string? value) {
+    if (string.IsNullOrWhiteSpace(value)) return null;
+    return bool.TryParse(value, out var result) ? result : null;
+  }
+
+  private async Task OnChange(string? value) {
+    await Field.SetSearchValueAsync(TryParse(value));
+  }
+
+  private IEnumerable<Option> GetOptions() {
+    yield return new Option("", "");
+    yield return new Option("true", "true");
+    yield return new Option("false", "false");
+  }
+
+  private record Option(string Text, string Value);
+
+}

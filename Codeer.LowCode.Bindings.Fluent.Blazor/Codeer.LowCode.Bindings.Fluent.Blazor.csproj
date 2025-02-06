@@ -4,6 +4,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    
+    <Version>0.1.0</Version>
+    <Description>You can use FluentUI with Codeer.LowCode.Blazor.</Description>
+    <PackageProjectUrl>https://github.com/Codeer-Software/Codeer.LowCode.Bindings.Fluent.Blazor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Codeer-Software/Codeer.LowCode.Bindings.Fluent.Blazor</RepositoryUrl>
+    <PackageTags>Blazor;LowCode;Codeer</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageId>Codeer.LowCode.Bindings.Fluent.Blazor</PackageId>
   </PropertyGroup>
 
 
@@ -12,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Codeer.LowCode.Blazor" Version="1.1.8" />
+    <PackageReference Include="Codeer.LowCode.Blazor" Version="1.1.31" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.11" />
     <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.10.4" />
     <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.10.4" />

@@ -16,6 +16,7 @@
       "Text": "Boolean",
       "DbColumn": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -26,6 +27,7 @@
     {
       "Appearance": "Neutral",
       "Text": "Button",
+      "ImageResourcePath": "",
       "Icon": "",
       "Variant": "Primary",
       "OnClick": "MudButton_OnClick",
@@ -37,6 +39,7 @@
       "Format": "",
       "DbColumn": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -51,6 +54,7 @@
       "CompositeIdVariables": [],
       "CompositeIdSeparator": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -63,6 +67,7 @@
       "Format": "",
       "DbColumn": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -108,6 +113,7 @@
       "EmptyCandidateType": "StringEmpty",
       "AllowOrSearch": false,
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -120,6 +126,7 @@
       "IsMultiline": true,
       "Placeholder": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -131,6 +138,7 @@
       "SaveAsUtc": false,
       "DbColumn": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -143,6 +151,7 @@
       "Text": "Boolean",
       "DbColumn": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -155,6 +164,7 @@
       "Text": "Boolean",
       "DbColumn": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -165,6 +175,7 @@
     {
       "Appearance": "Neutral",
       "Text": "Button",
+      "ImageResourcePath": "",
       "Icon": "",
       "Variant": "Primary",
       "OnClick": "MudButton_OnClick",
@@ -174,6 +185,7 @@
     {
       "Appearance": "Neutral",
       "Text": "Button",
+      "ImageResourcePath": "",
       "Icon": "",
       "Variant": "Primary",
       "OnClick": "MudButton_OnClick",
@@ -198,6 +210,7 @@
       "DbColumn": "",
       "AllowOrSearch": false,
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -207,6 +220,7 @@
     },
     {
       "Text": "Components",
+      "Icon": "",
       "Style": "H2",
       "RelativeField": "",
       "Name": "Label",
@@ -231,6 +245,7 @@
       "ListLayoutName": "",
       "SearchLayoutName": "",
       "IsUpdateProtected": false,
+      "IsSearchParameter": false,
       "OnSearchDataChanged": "",
       "DisplayName": "",
       "IsRequired": false,
@@ -271,16 +286,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "Label",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "HorizontalAlignment": "Center",
                 "CanResize": false
@@ -290,16 +308,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudBoolean",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
@@ -308,10 +329,11 @@
                   "FieldName": "MudBoolean1",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
@@ -320,10 +342,11 @@
                   "FieldName": "MudBoolean2",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -332,16 +355,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudButton",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
@@ -350,10 +376,11 @@
                   "FieldName": "MudButton1",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
@@ -362,10 +389,11 @@
                   "FieldName": "MudButton2",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -374,16 +402,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudDate",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -392,16 +423,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudDateTime",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -410,16 +444,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudFile",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -428,16 +465,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudId",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -446,16 +486,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudNumber",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -464,16 +507,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudPassword",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -482,16 +528,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudRadioButton",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
@@ -500,10 +549,11 @@
                   "FieldName": "MudRadioButton1",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
@@ -512,10 +562,11 @@
                   "FieldName": "MudRadioButton2",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -524,16 +575,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudSelect",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -542,16 +596,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudText",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -560,16 +617,19 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudTime",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
@@ -578,23 +638,25 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
                 "Layout": {
                   "FieldName": "MudLink",
                   "FontFamily": "",
                   "Color": "",
+                  "BackgroundColor": "",
                   "Name": "",
-                  "IsViewOnly": false,
                   "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
                 },
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
             ]
           }
         ],
-        "IsViewOnly": false,
         "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.GridLayoutDesign"
       }
     }
@@ -612,11 +674,11 @@
             "Label": "",
             "ColumnSpan": 1,
             "RowSpan": 1,
-            "IsViewOnly": false,
             "TextWrap": "Unset",
             "CanResize": false,
             "FontFamily": "",
-            "Color": ""
+            "Color": "",
+            "BackgroundColor": ""
           }
         ]
       ]
@@ -638,27 +700,32 @@
           {
             "IsWrap": false,
             "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
             "Columns": [
               {
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
               {
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
               {
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               },
               {
+                "BackgroundColor": "",
                 "Border": "None",
                 "CanResize": false
               }
             ]
           }
         ],
-        "IsViewOnly": false,
         "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.SearchGridLayoutDesign"
       }
     }

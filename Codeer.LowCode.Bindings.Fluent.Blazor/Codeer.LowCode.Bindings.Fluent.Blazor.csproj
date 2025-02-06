@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    
+
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>0.1.0</Version>
     <Description>You can use FluentUI with Codeer.LowCode.Blazor.</Description>
     <PackageProjectUrl>https://github.com/Codeer-Software/Codeer.LowCode.Bindings.Fluent.Blazor</PackageProjectUrl>

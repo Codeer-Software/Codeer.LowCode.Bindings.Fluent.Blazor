@@ -1,4 +1,4 @@
-# Bindings.MudBlazor
+# Bindings.FluentUI
 
 [Codeer.LowCode.Blazor](https://github.com/Codeer-Software/Codeer.LowCode.Blazor.Manual/blob/main/JP/README.md)に[Fluent UI Blazor](https://www.fluentui-blazor.net/) UIコンポーネントを追加するためのライブラリです。
 

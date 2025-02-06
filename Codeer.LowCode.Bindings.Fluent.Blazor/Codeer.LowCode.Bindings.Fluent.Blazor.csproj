@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Description>You can use FluentUI with Codeer.LowCode.Blazor.</Description>
     <PackageProjectUrl>https://github.com/Codeer-Software/Codeer.LowCode.Bindings.Fluent.Blazor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Codeer-Software/Codeer.LowCode.Bindings.Fluent.Blazor</RepositoryUrl>
@@ -29,7 +29,12 @@
     <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.10.4" />
     <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.10.4" />
   </ItemGroup>
-
+  
+  <PropertyGroup>
+    <StaticWebAssetFingerprintingEnabled>false</StaticWebAssetFingerprintingEnabled>
+    <StaticWebAssetsFingerprintContent>false</StaticWebAssetsFingerprintContent>
+  </PropertyGroup>
+  
   <ItemGroup>
     <Compile Update="Properties\Resource.Designer.cs">
       <DesignTime>True</DesignTime>

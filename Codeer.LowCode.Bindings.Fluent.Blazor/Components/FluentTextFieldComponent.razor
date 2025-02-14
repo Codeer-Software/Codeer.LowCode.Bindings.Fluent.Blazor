@@ -8,7 +8,7 @@
   if (Field.Design.IsMultiline) {
     <FluentTextArea @bind-Value:get="@Value!" @bind-Value:set="@RaiseOnValueChanged" Id="@WebElementId.DomSafeString()"
                     Disabled="@IsDisabled" ReadOnly="IsViewMode" Maxlength="@(MaxLength ?? 524288)"
-                    Placeholder="@Placeholder" Rows="@Rows"/>
+                    Placeholder="@Placeholder" Rows="@Rows" style="width:100%"/>
   } else {
     <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="@RaiseOnValueChanged" Id="@WebElementId.DomSafeString()"
                      Disabled="@IsDisabled" ReadOnly="IsViewMode" Maxlength="@(MaxLength ?? 524288)"

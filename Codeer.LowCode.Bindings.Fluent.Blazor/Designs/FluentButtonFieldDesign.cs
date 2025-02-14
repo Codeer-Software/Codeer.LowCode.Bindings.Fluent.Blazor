@@ -8,6 +8,8 @@ namespace Codeer.LowCode.Bindings.Fluent.Blazor.Designs
     public class FluentButtonFieldDesign : ButtonFieldDesign
     {
         [Designer]
+        [EnumIgnore(Appearance.Hypertext)]
+        [EnumIgnore(Appearance.Filled)]
         public Appearance Appearance { get; set; }
 
         public FluentButtonFieldDesign() => TypeFullName = typeof(FluentButtonFieldDesign).FullName!;

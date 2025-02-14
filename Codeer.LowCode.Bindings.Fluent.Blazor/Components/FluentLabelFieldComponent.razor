@@ -1,0 +1,47 @@
+﻿@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Blazor.OperatingModel
+@using Codeer.LowCode.Blazor.Repository.Design
+@inherits FluentFieldComponentBase<LabelField, FluentLabelFieldDesign>
+
+<FluentLabel class="m-0 form-label user-select-none" Typo="@GetTypography()">
+  @if (!string.IsNullOrEmpty(Field.Design.Icon)) 
+  {
+    <i class="@Field.Design.Icon me-2"></i>
+  }
+  @GetTextContent()
+</FluentLabel>
+@if (IsRequired()) {
+  <span class="text-danger">*</span>
+}
+
+@code {
+
+  private Typography GetTypography() => Field.Design.Style switch
+  {
+    LabelStyle.H1 => Typography.H1,
+    LabelStyle.H2 => Typography.H2,
+    LabelStyle.H3 => Typography.H3,
+    LabelStyle.H4 => Typography.H4,
+    LabelStyle.H5 => Typography.H5,
+    LabelStyle.H6 => Typography.H6,
+    _ => Typography.Body,
+  };
+
+  private string GetTextContent() {
+    var relativeField = Field.Module.GetField(Field.Design.RelativeField);
+    if (relativeField == null) {
+      return Field.Text;
+    }
+
+    return string.IsNullOrEmpty(Field.Text) ? relativeField.Design.GetDisplayText() : Field.Text;
+  }
+
+  private bool IsRequired() {
+    var relativeField = Field.Module.GetField(Field.Design.RelativeField);
+    return relativeField switch {
+      RadioButtonField radioButtonField => radioButtonField.GetRadioGroupField()?.Design.IsRequired ?? false,
+      null => false,
+      _ => relativeField.Design.IsRequired(),
+    };
+  }
+}

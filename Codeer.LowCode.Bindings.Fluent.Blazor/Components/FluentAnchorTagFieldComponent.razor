@@ -1,0 +1,68 @@
+﻿@using Codeer.LowCode.Blazor.OperatingModel
+@using Codeer.LowCode.Blazor.Repository.Design
+@using Microsoft.JSInterop
+@using Codeer.LowCode.Blazor.Components.Primitives
+@inject IJSRuntime JSRuntime
+@inherits FluentFieldComponentBase<AnchorTagField, FluentAnchorTagFieldDesign>
+
+@{
+  var props = new Dictionary<string, object?> {
+    { nameof(FluentAnchor.Appearance), FluentDesign.Appearance },
+    { "id", WebElementId },
+    { "disabled", IsDisabled },
+  };
+
+  if (Field.Design.Target == AnchorTarget.Url && Field.Design.ShouldOpenInNewTab)
+  {
+    props.Add("target", "_blank");
+    props.Add("rel", "noopener noreferrer");
+  }
+}
+
+@if (Field.Design.Target == AnchorTarget.Url)
+{
+  <FluentAnchor @attributes="props!" Href="@(Field.HasClickHandler ? "#" : Field.GetUrl())" Onclick="@RaiseOnClick">
+    @if (!string.IsNullOrEmpty(Field.Design.ImageResourcePath)) {
+      <ResourceImage ResourcePath="@Field.Design.ImageResourcePath"/>
+    } else {
+      if (!string.IsNullOrEmpty(Field.Design.Icon)) {
+        <i class="@Field.Design.Icon me-2"></i>
+      }
+      @GetTitle()
+    }
+  </FluentAnchor>
+} else {
+  <FluentAnchor @attributes="props!" href="#" Onclick="@NavigateHistory">
+    @if (!string.IsNullOrEmpty(Field.Design.ImageResourcePath)) {
+      <ResourceImage ResourcePath="@Field.Design.ImageResourcePath"/>
+    } else {
+      @if (!string.IsNullOrEmpty(Field.Design.Icon))
+      {
+        <i class="@Field.Design.Icon me-2"></i>
+      }
+      @GetTitle()
+    }
+  </FluentAnchor>
+}
+
+@code {
+  private bool IsDisabled => Field.IsEnabled == false;
+
+  private async Task RaiseOnClick() {
+    await Field.InvokeOnClickAsync();
+  }
+
+  private string GetTitle() => Field.GetTitle();
+
+  private async void NavigateHistory() {
+    await RaiseOnClick();
+    if (Field.Design.Target == AnchorTarget.HistoryBack)
+    {
+      await JSRuntime.InvokeVoidAsync("history.back");
+    }
+    else if (Field.Design.Target == AnchorTarget.HistoryForward)
+    {
+      await JSRuntime.InvokeVoidAsync("history.forward");
+    }
+  }
+}

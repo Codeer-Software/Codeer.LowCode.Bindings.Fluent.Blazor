@@ -252,6 +252,24 @@
       "OnDataChanged": "",
       "Name": "MudLink",
       "TypeFullName": "Codeer.LowCode.Bindings.Fluent.Blazor.Designs.FluentLinkFieldDesign"
+    },
+    {
+      "Appearance": "Hypertext",
+      "Style": "Text",
+      "Target": "Url",
+      "ShouldOpenInNewTab": false,
+      "Icon": "",
+      "TitleText": "Anchor Tag",
+      "TitleVariable": "",
+      "ImageResourcePath": "",
+      "PageFrame": "",
+      "Module": "",
+      "ModuleVariable": "",
+      "IdVariable": "",
+      "Url": "http://example.com/",
+      "OnClick": "FluentAnchorTag_OnClick",
+      "Name": "FluentAnchorTag",
+      "TypeFullName": "Codeer.LowCode.Bindings.Fluent.Blazor.Designs.FluentAnchorTagFieldDesign"
     }
   ],
   "UserWriteCondition": {
@@ -644,6 +662,27 @@
               {
                 "Layout": {
                   "FieldName": "MudLink",
+                  "FontFamily": "",
+                  "Color": "",
+                  "BackgroundColor": "",
+                  "Name": "",
+                  "TypeFullName": "Codeer.LowCode.Blazor.Repository.Design.FieldLayoutDesign"
+                },
+                "BackgroundColor": "",
+                "Border": "None",
+                "CanResize": false
+              }
+            ]
+          },
+          {
+            "IsWrap": false,
+            "IsRowMarginRemoved": false,
+            "GridRowType": "Normal",
+            "BackgroundColor": "",
+            "Columns": [
+              {
+                "Layout": {
+                  "FieldName": "FluentAnchorTag",
                   "FontFamily": "",
                   "Color": "",
                   "BackgroundColor": "",

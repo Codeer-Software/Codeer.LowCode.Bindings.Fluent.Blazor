@@ -3,7 +3,7 @@
 @inherits FluentFieldComponentBase<NumberField, FluentNumberFieldDesign>
 
 @if (IsViewMode) {
-  <span class="d-block py-2">@GetViewOnlyValue()</span>
+  <FluentLabel class="d-block py-2">@GetViewOnlyValue()</FluentLabel>
 } else {
   <FluentNumberField @bind-Value:get="@Field.Value" @bind-Value:set="@RaiseOnValueChanged"
                      Disabled="@IsDisabled" ReadOnly="IsViewMode" Id="@WebElementId.DomSafeString()"

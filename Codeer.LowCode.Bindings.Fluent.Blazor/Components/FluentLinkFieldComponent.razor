@@ -6,7 +6,7 @@
 @inherits FluentFieldComponentBase<LinkField, FluentLinkFieldDesign>
 
 @if (IsViewMode) {
-  <span class="d-block py-2">@ViewOnlyValue</span>
+  <FluentLabel class="d-block py-2">@ViewOnlyValue</FluentLabel>
 } else {
   <FluentStack>
     @if (IsSelectOnly) {

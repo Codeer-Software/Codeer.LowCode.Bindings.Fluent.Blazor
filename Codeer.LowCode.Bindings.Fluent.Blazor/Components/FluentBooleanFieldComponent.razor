@@ -5,9 +5,9 @@
 @inherits FluentFieldComponentBase<BooleanField, FluentBooleanFieldDesign>
 
 @if (Field.ModuleLayoutType == ModuleLayoutType.List && Field.IsViewOnly) {
-  <span class="d-block py-2">
+  <FluentLabel class="d-block py-2">
     @ViewOnlyValue
-  </span>
+  </FluentLabel>
 } else {
   if (Field.Design.UIType == BooleanUIType.CheckBox) {
     <FluentCheckbox Id="@WebElementId.DomSafeString()" @bind-Value:get="@IsChecked" @bind-Value:set="@OnChange" Disabled="@(IsDisabled || IsViewMode)" Label="@Label" />

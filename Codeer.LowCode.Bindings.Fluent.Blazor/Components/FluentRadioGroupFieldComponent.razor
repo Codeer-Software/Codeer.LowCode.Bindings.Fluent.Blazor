@@ -2,9 +2,9 @@
 @using Codeer.LowCode.Blazor.Components
 @inherits FieldComponentBase<RadioGroupField>
 
-<span class="d-block py-2">
+<FluentLabel class="d-block py-2">
   @ViewOnlyValue
-</span>
+</FluentLabel>
 
 @code {
   private object? ViewOnlyValue => Field.Services.AppInfoService.IsDesignMode ? "RadioGroup" : Field.Value;

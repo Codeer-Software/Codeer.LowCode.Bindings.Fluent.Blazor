@@ -3,7 +3,7 @@
 @inherits FluentFieldComponentBase<TextField, FluentTextFieldDesign>
 
 @if (IsViewMode) {
-  <span class="d-block py-2" style="@(WhiteSpaceStyle())">@ViewOnlyValue</span>
+  <FluentLabel class="d-block py-2" style="@(WhiteSpaceStyle())">@ViewOnlyValue</FluentLabel>
 } else {
   if (Field.Design.IsMultiline) {
     <FluentTextArea @bind-Value:get="@Value!" @bind-Value:set="@RaiseOnValueChanged" Id="@WebElementId.DomSafeString()"

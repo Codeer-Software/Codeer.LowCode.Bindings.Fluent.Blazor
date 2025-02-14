@@ -9,14 +9,12 @@
 } else {
   <FluentSelect TOption="Option" Items="GetOptions()" Id="@WebElementId.DomSafeString()" @bind-Value:get="SelectedValue"
                 @bind-Value:set="@OnChange" OptionText="@((Option option) => option.Text)"
-                OptionValue="@((Option option) => option.Value)" Disabled="@IsDisabled" @bind-Open:get="_isOpen"
-                @bind-Open:set="OnOpen"/>
+                OptionValue="@((Option option) => option.Value)" Disabled="@IsDisabled" />
 }
 
 @code {
   private bool IsDisabled => Field.IsEnabled == false;
   private bool IsViewMode => Field.IsViewOnly;
-  private bool _isOpen;
 
   private string? _bugFixValue;
 
@@ -37,19 +35,16 @@
   private Dictionary<string, string> ItemsSource => Field.DisplayTextAndValue;
   private string? ViewOnlyValue => Field.Services.AppInfoService.IsDesignMode ? "Select" : Field.DisplayText;
 
+  protected override async Task OnAfterRenderAsync(bool isFirstRender) {
+    await OnFocus();
+  }
+
   private async Task OnChange(string? value) {
     if (string.IsNullOrEmpty(value)) {
       value = Field.Design.EmptyCandidateType == SelectEmptyCandidateType.StringEmpty ? string.Empty : null;
     }
 
     await Field.SetValueAsync(value);
-  }
-
-  private void OnOpen(bool isOpen) {
-    _isOpen = isOpen;
-    if (isOpen) {
-      _ = OnFocus();
-    }
   }
 
   private async Task OnFocus() {

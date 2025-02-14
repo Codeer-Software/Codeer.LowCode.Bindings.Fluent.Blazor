@@ -23,8 +23,8 @@
 
   private IEnumerable<Option> GetOptions() {
     yield return new Option("", "");
-    yield return new Option("true", "true");
-    yield return new Option("false", "false");
+    yield return new Option("true", "True");
+    yield return new Option("false", "False");
   }
 
   private record Option(string Text, string Value);

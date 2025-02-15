@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0" />
-    <PackageReference Include="Codeer.LowCode.Blazor.Designer" Version="1.1.31" />
+    <PackageReference Include="Codeer.LowCode.Blazor.Designer" Version="1.1.32" />
     <ProjectReference Include="..\LowCodeApp.Client.Shared\LowCodeApp.Client.Shared.csproj" />
     <ProjectReference Include="..\LowCodeApp.Server.Shared\LowCodeApp.Server.Shared.csproj" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codeer.LowCode.Blazor" Version="1.1.31" />
+    <PackageReference Include="Codeer.LowCode.Blazor" Version="1.1.32" />
   </ItemGroup>
   <ItemGroup>
     <UpToDateCheckInput Remove="Samples\BarcodeInput\BarcodeInputFieldComponent.razor" />

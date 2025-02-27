@@ -3,16 +3,18 @@
 @using Codeer.LowCode.Blazor.Repository.Design
 @inherits FluentFieldComponentBase<LabelField, FluentLabelFieldDesign>
 
-<FluentLabel class="m-0 form-label user-select-none" Typo="@GetTypography()">
-  @if (!string.IsNullOrEmpty(Field.Design.Icon)) 
-  {
-    <i class="@Field.Design.Icon me-2"></i>
+<div>
+  <FluentLabel class="m-0 form-label user-select-none" Typo="@GetTypography()">
+    @if (!string.IsNullOrEmpty(Field.Design.Icon)) 
+    {
+      <i class="@Field.Design.Icon me-2"></i>
+    }
+    @GetTextContent()
+  </FluentLabel>
+  @if (IsRequired()) {
+    <span class="text-danger">*</span>
   }
-  @GetTextContent()
-</FluentLabel>
-@if (IsRequired()) {
-  <span class="text-danger">*</span>
-}
+</div>
 
 @code {
 

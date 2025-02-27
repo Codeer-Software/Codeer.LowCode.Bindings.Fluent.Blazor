@@ -19,31 +19,33 @@
   }
 }
 
-@if (Field.Design.Target == AnchorTarget.Url)
-{
-  <FluentAnchor @attributes="props!" Href="@(Field.HasClickHandler ? "#" : Field.GetUrl())" Onclick="@RaiseOnClick">
-    @if (!string.IsNullOrEmpty(Field.Design.ImageResourcePath)) {
-      <ResourceImage ResourcePath="@Field.Design.ImageResourcePath"/>
-    } else {
-      if (!string.IsNullOrEmpty(Field.Design.Icon)) {
-        <i class="@Field.Design.Icon me-2"></i>
+<div>
+  @if (Field.Design.Target == AnchorTarget.Url)
+  {
+    <FluentAnchor @attributes="props!" Href="@(Field.HasClickHandler ? "#" : Field.GetUrl())" Onclick="@RaiseOnClick">
+      @if (!string.IsNullOrEmpty(Field.Design.ImageResourcePath)) {
+        <ResourceImage ResourcePath="@Field.Design.ImageResourcePath"/>
+      } else {
+        if (!string.IsNullOrEmpty(Field.Design.Icon)) {
+          <i class="@Field.Design.Icon me-2"></i>
+        }
+        @GetTitle()
       }
-      @GetTitle()
-    }
-  </FluentAnchor>
-} else {
-  <FluentAnchor @attributes="props!" href="#" Onclick="@NavigateHistory">
-    @if (!string.IsNullOrEmpty(Field.Design.ImageResourcePath)) {
-      <ResourceImage ResourcePath="@Field.Design.ImageResourcePath"/>
-    } else {
-      @if (!string.IsNullOrEmpty(Field.Design.Icon))
-      {
-        <i class="@Field.Design.Icon me-2"></i>
+    </FluentAnchor>
+  } else {
+    <FluentAnchor @attributes="props!" href="#" Onclick="@NavigateHistory">
+      @if (!string.IsNullOrEmpty(Field.Design.ImageResourcePath)) {
+        <ResourceImage ResourcePath="@Field.Design.ImageResourcePath"/>
+      } else {
+        @if (!string.IsNullOrEmpty(Field.Design.Icon))
+        {
+          <i class="@Field.Design.Icon me-2"></i>
+        }
+        @GetTitle()
       }
-      @GetTitle()
-    }
-  </FluentAnchor>
-}
+    </FluentAnchor>
+  }
+</div>
 
 @code {
   private bool IsDisabled => Field.IsEnabled == false;

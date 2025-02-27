@@ -1,0 +1,4 @@
+﻿.appearance-background-color div ::deep fluent-anchor {
+  background: var(--background);
+  border-radius: 0;
+}

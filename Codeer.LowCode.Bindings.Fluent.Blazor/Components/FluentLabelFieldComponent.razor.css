@@ -1,0 +1,3 @@
+﻿.appearance-background-color div ::deep p {
+  background: var(--background);
+}

@@ -1,6 +1,5 @@
-﻿.appearance-background-color div ::deep fluent-anchor {
+﻿.appearance-background-color div ::deep ::part(control) {
   background: var(--background);
-  border-radius: 0;
 }
 
 .appearance-text-color div ::deep ::part(control){

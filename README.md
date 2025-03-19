@@ -41,6 +41,7 @@ typeof(FluentTextFieldDesign).ToString();
 ```csharp
 typeof(FluentTextFieldDesign).ToString();
 Services.AddFluentUIComponents();
+BlazorRuntime.InstallBundleCss("Codeer.LowCode.Bindings.Fluent.Blazor");
 BlazorRuntime.InstallAssemblyInitializer(typeof(FluentTextFieldDesign).Assembly);
 ```
 

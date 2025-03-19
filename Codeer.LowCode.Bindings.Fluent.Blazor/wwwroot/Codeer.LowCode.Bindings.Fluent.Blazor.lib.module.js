@@ -1,4 +1,4 @@
-﻿const AssemblyName = "Codeer.LowCode.Bindings.MudBlazor";
+﻿const AssemblyName = "Codeer.LowCode.Bindings.Fluent.Blazor";
 
 /**
  *
@@ -27,18 +27,22 @@ function installCss(src) {
   document.head.appendChild(link);
 }
 
-function startup() {
+function startup(designer) {
   if (document.head.querySelector(`meta[name="${AssemblyName}::autoload"]`)?.content === "false") {
     return;
+  }
+
+  if (designer) {
+    installCss("_content/Codeer.LowCode.Bindings.Fluent.Blazor/Codeer.LowCode.Bindings.Fluent.Blazor.bundle.scp.css");
   }
 
   installScript("_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.lib.module.js", "module");
 }
 
-export function beforeStart() {
-  startup();
+export function beforeStart(designer) {
+  startup(designer);
 }
 
-export function beforeWebStart() {
-  startup();
+export function beforeWebStart(designer) {
+  startup(designer);
 }

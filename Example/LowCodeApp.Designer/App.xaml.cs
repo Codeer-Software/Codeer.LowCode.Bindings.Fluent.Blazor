@@ -52,7 +52,6 @@ namespace LowCodeApp.Designer
 
             Services.AddFluentUIComponents();
             BlazorRuntime.InstallBundleCss("LowCodeApp.Client.Shared");
-            BlazorRuntime.InstallBundleCss(typeof(FluentTextFieldDesign).Assembly.GetName().Name!);
             BlazorRuntime.InstallAssemblyInitializer(typeof(FluentTextFieldDesign).Assembly);
 
             IconCandidate.Icons.AddRange(LowCodeApp.Designer.Properties.Resources.bootstrap_icons

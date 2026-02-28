@@ -1,17 +1,17 @@
-﻿@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
+@using Codeer.LowCode.Bindings.Fluent.Blazor.Extensions
 @using Codeer.LowCode.Blazor.OperatingModel
 @using Codeer.LowCode.Blazor.Repository.Design
 @inherits FluentFieldComponentBase<LabelField, FluentLabelFieldDesign>
 
-<div>
+<div @onclick="@RaiseOnClick" @onclick:preventDefault="Field.HasClickHandler" style="@GetStyleString()">
   <FluentLabel class="m-0 form-label user-select-none" Typo="@GetTypography()">
-    @if (!string.IsNullOrEmpty(Field.Design.Icon)) 
+    @if (!string.IsNullOrEmpty(Field.Design.Icon))
     {
       <i class="@Field.Design.Icon me-2"></i>
     }
-    @GetTextContent()
+    @Field.Services.AppInfoService.Localize(GetTextContent())
   </FluentLabel>
-  @if (IsRequired()) {
+  @if (IsRelativeFieldRequired()) {
     <span class="text-danger">*</span>
   }
 </div>
@@ -38,12 +38,21 @@
     return string.IsNullOrEmpty(Field.Text) ? relativeField.Design.GetDisplayText() : Field.Text;
   }
 
-  private bool IsRequired() {
+  private Task RaiseOnClick() => Field.InvokeOnClickAsync();
+
+  private bool IsRelativeFieldRequired() {
+    if (Field.ModuleLayoutType == ModuleLayoutType.Search) return false;
     var relativeField = Field.Module.GetField(Field.Design.RelativeField);
     return relativeField switch {
-      RadioButtonField radioButtonField => radioButtonField.GetRadioGroupField()?.Design.IsRequired ?? false,
+      RadioButtonField radioButtonField => radioButtonField.GetRadioGroupField()?.Design.IsRequired() ?? false,
       null => false,
       _ => relativeField.Design.IsRequired(),
     };
+  }
+
+  private string? GetStyleString()
+  {
+    if (Field.IsViewOnly || !Field.IsEnabled || !Field.HasClickHandler) return null;
+    return "cursor: pointer";
   }
 }

@@ -13,7 +13,7 @@
         }
       </FluentSelect>
     } else {
-      <FluentSelect TOption="string" @bind-Value:get="@SelectedValue" @bind-Value:set="@OnChange" Variant="MudDesign.Variant">
+      <FluentSelect TOption="string" @bind-Value:get="@SelectedValue" @bind-Value:set="@OnChange" @onfocus="@OnFocus">
         <FluentOption Value="@("")"></FluentOption>
         @foreach (var item in ItemsSource) {
           <FluentOption Value="@item.Value">@item.Key</FluentOption>
@@ -21,9 +21,12 @@
       </FluentSelect>
     }
   </div>
-  <div class="not-button">
-    <InternalFluentToggleButton Label="Not" @bind-Value:get="@Field.IsInverted" @bind-Value:set="@OnChangeFlag" />
-  </div>
+  @if (Field.Design.IsSimpleSearchParameter == false)
+  {
+    <div class="not-button">
+      <InternalFluentToggleButton Label="Not" @bind-Value:get="@Field.IsInverted" @bind-Value:set="@OnChangeFlag" />
+    </div>
+  }
 </div>
 
 @code {
@@ -52,4 +55,7 @@
     await Field.SetNotFlag(isChecked);
   }
 
+  private async Task OnFocus() {
+    await Field.OnFocusAsync();
+  }
 }

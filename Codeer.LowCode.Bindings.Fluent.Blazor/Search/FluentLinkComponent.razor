@@ -17,7 +17,7 @@
   <FluentButton IconEnd="@(new Icons.Regular.Size16.Search())" OnClick="OpenModal" data-system="search"/>
 </FluentStack>
 
-<ModalBase @bind-IsOpen="_isModalOpen" Title="Search" Size="modal-lg">
+<ModalBase @bind-IsOpen="_isModalOpen" Size="modal-lg">
   @if (_isModalOpen) {
     <LinkTableRenderer SearchConditions="@SearchConditions" ItemSelected="OnItemSelected"
                        ModuleDesign="Field.Module.Design" LinkFieldDesign="Field.Design"/>
@@ -42,16 +42,26 @@
     }
   }
 
-  private void OpenModal() => _isModalOpen = true;
+  private async Task OpenModal()
+  {
+    if (!string.IsNullOrEmpty(Field.Design.OnSearchButtonClicked))
+    {
+      await Field.Module.ExecuteScriptAsync(Field.Design.OnSearchButtonClicked);
+      return;
+    }
+
+    await Task.CompletedTask;
+    if (Field.GetSearchConditionAssignedValue() != null) _isModalOpen = true;
+  }
 
   private void CloseModal() => _isModalOpen = false;
 
   private async void OnItemSelected(Module obj) {
-    // ここはValueVariableの値じゃないとあかん
-    await Field.SetSearchValueAsync(LinkField.GetLinkValue(Field.Design, obj));
-    // こっちはDisplayTextVariableの値
-    Field.DisplayText = LinkField.GetLinkDisplayText(Field.Design, obj);
     CloseModal();
+    if (obj == null) return;
+
+    await Field.SetSearchValueAsync(LinkField.GetLinkValue(Field.Design, obj));
+    Field.DisplayText = LinkField.GetLinkDisplayText(Field.Design, obj);
   }
 
   private async void Clear() {

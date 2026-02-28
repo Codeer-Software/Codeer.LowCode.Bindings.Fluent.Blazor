@@ -5,10 +5,13 @@
 
 <div class="d-flex">
   <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="@OnChange" Id="@WebElementId"/>
-  <FluentSelect TOption="string" @bind-Value:get="@Comparison" @bind-Value:set="@OnComparisonChange">
-    <FluentOption Value="Like">@Resource.SearchField_MatchCondition_Like</FluentOption>
-    <FluentOption Value="Equal">@Resource.SearchField_MatchCondition_Equals</FluentOption>
-  </FluentSelect>
+  @if (Field.Design.IsSimpleSearchParameter == false)
+  {
+    <FluentSelect TOption="string" @bind-Value:get="@Comparison" @bind-Value:set="@OnComparisonChange">
+      <FluentOption Value="Like">@Resource.SearchField_MatchCondition_Like</FluentOption>
+      <FluentOption Value="Equal">@Resource.SearchField_MatchCondition_Equals</FluentOption>
+    </FluentSelect>
+  }
 </div>
 
 @code {

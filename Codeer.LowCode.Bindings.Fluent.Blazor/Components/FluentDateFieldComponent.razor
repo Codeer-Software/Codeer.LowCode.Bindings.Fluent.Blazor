@@ -5,8 +5,16 @@
 @if (IsViewMode) {
   <FluentLabel class="d-block py-2">@GetViewOnlyValue()</FluentLabel>
 } else {
-  <FluentDatePicker @bind-Value:get="@GetValue" @bind-Value:set="@RaiseOnValueChanged"
-                    Id="@WebElementId.DomSafeString()" Disabled="@IsDisabled" ReadOnly="IsViewMode" />
+  @if (Field.Design.IsYearMonthOnly) {
+    <input type="month" class="form-control"
+           disabled="@IsDisabled"
+           id="@WebElementId"
+           value="@GetYearMonthValue()"
+           @onchange="@OnYearMonthInput" />
+  } else {
+    <FluentDatePicker @bind-Value:get="@GetValue" @bind-Value:set="@RaiseOnValueChanged"
+                      Id="@WebElementId.DomSafeString()" Disabled="@IsDisabled" ReadOnly="IsViewMode" />
+  }
 }
 
 @code {
@@ -16,8 +24,21 @@
 
   private DateTime? GetValue => Field.Value?.ToDateTime(TimeOnly.MinValue);
 
+  private string? GetYearMonthValue() => Field.Value?.ToString("yyyy-MM");
+
   private async Task RaiseOnValueChanged(DateTime? value) {
     await Field.SetValueAsync(value.ToDateOnlyNullable());
+  }
+
+  private async Task OnYearMonthInput(ChangeEventArgs e) {
+    var value = e.Value?.ToString();
+    if (string.IsNullOrWhiteSpace(value)) {
+      await Field.SetValueAsync(null);
+      return;
+    }
+    if (DateOnly.TryParseExact(value, "yyyy-MM", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var dt)) {
+      await Field.SetValueAsync(dt);
+    }
   }
 
   private string GetViewOnlyValue() {

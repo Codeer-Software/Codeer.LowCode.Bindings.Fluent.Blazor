@@ -21,7 +21,7 @@
   private string? SelectedValue {
     get {
       if (_bugFixValue != null) {
-        //��x�s����p�̕������Ԃ�
+        //一度不具合回避用の文字列を返す
         var ret = _bugFixValue;
         _bugFixValue = null;
         StateHasChanged();
@@ -48,8 +48,8 @@
   }
 
   private async Task OnFocus() {
-    //�����Ō���ς�����A�I�𕶎��񂪏����Ă��܂�
-    //���̂��߈�u���O�̕������ݒ肵�čēx�������l��ݒ肷��Ƃ�����@���g��
+    //ここで候補を変えた後、選択文字列が消えてしまう
+    //そのため一瞬候補外の文字列を設定して再度正しい値を設定するという手法を使う
     if (await Field.OnFocusAsync()) _bugFixValue = Guid.NewGuid().ToString();
   }
 
@@ -59,7 +59,7 @@
     }
 
     foreach (var item in ItemsSource) {
-      yield return new Option(item.Key, item.Value);
+      yield return new Option(Field.Services.AppInfoService.Localize(item.Key), item.Value);
     }
   }
 

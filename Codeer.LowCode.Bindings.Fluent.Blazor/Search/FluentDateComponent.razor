@@ -3,8 +3,11 @@
 
 <div class="d-flex align-items-center">
   <FluentDatePicker @bind-Value:get="@MoreThanValue" @bind-Value:set="@OnMoreThanChanged" data-search-target="min"/>
-  <span>～</span>
-  <FluentDatePicker @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged" data-search-target="max"/>
+  @if (Field.Design.IsSimpleSearchParameter == false)
+  {
+    <span>～</span>
+    <FluentDatePicker @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged" data-search-target="max"/>
+  }
 </div>
 
 @code {

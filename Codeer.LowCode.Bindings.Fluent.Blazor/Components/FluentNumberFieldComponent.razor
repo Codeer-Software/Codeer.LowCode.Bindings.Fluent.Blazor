@@ -5,17 +5,31 @@
 @if (IsViewMode) {
   <FluentLabel class="d-block py-2">@GetViewOnlyValue()</FluentLabel>
 } else {
-  <FluentNumberField @bind-Value:get="@Field.Value" @bind-Value:set="@RaiseOnValueChanged"
-                     Disabled="@IsDisabled" ReadOnly="IsViewMode" Id="@WebElementId.DomSafeString()"
-                     Placeholder="@Placeholder" Max="@Max?.ToString()" Min="@Min?.ToString()"/>
+  @if (Field.Design.IsSlider) {
+    <FluentSlider @bind-Value:get="@SliderValue" @bind-Value:set="@OnSliderChanged"
+                  Disabled="@IsDisabled" Id="@WebElementId.DomSafeString()"
+                  Min="@(Min ?? 0)" Max="@(Max ?? 100)" Step="@(Step ?? 1)" Style="width:100%;" />
+  } else {
+    <FluentNumberField @bind-Value:get="@Field.Value" @bind-Value:set="@RaiseOnValueChanged"
+                       Disabled="@IsDisabled" ReadOnly="IsViewMode" Id="@WebElementId.DomSafeString()"
+                       Placeholder="@Placeholder" Max="@Max?.ToString()" Min="@Min?.ToString()"
+                       Step="@Step?.ToString()" />
+  }
 }
 
 @code {
   private bool IsDisabled => Field.IsEnabled == false;
   private bool IsViewMode => Field.IsViewOnly;
-  private string? Placeholder => Field.Design.Placeholder;
+  private string? Placeholder => Field.Services.AppInfoService.Localize(Field.Design.Placeholder);
   private decimal? Max => Field.Design.Max;
   private decimal? Min => Field.Design.Min;
+  private decimal? Step => Field.Design.Step;
+
+  private decimal SliderValue => Field.Value ?? 0;
+
+  private async Task OnSliderChanged(decimal fieldValue) {
+    await Field.SetValueAsync(fieldValue);
+  }
 
   private async Task RaiseOnValueChanged(decimal? fieldValue) {
     await Field.SetValueAsync(fieldValue);
@@ -30,5 +44,4 @@
       return value?.ToString() ?? string.Empty;
     }
   }
-
 }

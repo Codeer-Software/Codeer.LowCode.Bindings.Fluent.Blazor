@@ -54,7 +54,7 @@
     await Field.InvokeOnClickAsync();
   }
 
-  private string GetTitle() => Field.GetTitle();
+  private string GetTitle() => Field.Services.AppInfoService.Localize(Field.GetTitle());
 
   private async void NavigateHistory() {
     await RaiseOnClick();

@@ -23,9 +23,12 @@
       </FluentSelect>
     }
   </div>
-  <div class="not-button">
-    <InternalFluentToggleButton Label="Not" @bind-Value:get="@Field.IsInverted" @bind-Value:set="@OnChangeFlag" />
-  </div>
+  @if (Field.Design.IsSimpleSearchParameter == false)
+  {
+    <div class="not-button">
+      <InternalFluentToggleButton Label="Not" @bind-Value:get="@Field.IsInverted" @bind-Value:set="@OnChangeFlag" />
+    </div>
+  }
 </div>
 
 @code {

@@ -5,9 +5,12 @@
 <div class="d-flex align-items-center">
   <FluentNumberField @bind-Value:get="@MoreThanValue" @bind-Value:set="@OnMoreThanChanged"
                      Id="@WebElementId.DomSafeString()" data-search-target="min"/>
-  <span>～</span>
-  <FluentNumberField @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged"
-                     data-search-target="max"/>
+  @if (Field.Design.IsSimpleSearchParameter == false)
+  {
+    <span>～</span>
+    <FluentNumberField @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged"
+                       data-search-target="max"/>
+  }
 </div>
 
 @code {

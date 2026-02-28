@@ -4,7 +4,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Codeer.LowCode.Bindings.Fluent.Blazor.Designs
 {
-    [IgnoreBaseProperties(nameof(Variant), nameof(Icon))]
+    [IgnoreBaseProperties(nameof(Variant), nameof(Icon), nameof(ImageResourceSet), nameof(ShowTextInToolTip))]
     public class FluentButtonFieldDesign : ButtonFieldDesign
     {
         [Designer]

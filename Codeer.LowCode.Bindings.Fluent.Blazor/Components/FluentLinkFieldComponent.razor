@@ -11,7 +11,7 @@
   <FluentStack>
     @if (IsSelectOnly) {
       <FluentTextField Value="@DisplayText" Disabled="@IsDisabled" ReadOnly="true" Id="@WebElementId.DomSafeString()">
-        @if (HasValue) {
+        @if (!string.IsNullOrEmpty(DisplayText)) {
           <FluentIcon OnClick="@Clear" Slot="end" Value="@(new Icons.Regular.Size16.Delete())"/>
         }
       </FluentTextField>
@@ -24,7 +24,7 @@
                   data-system="search"/>
   </FluentStack>
 
-  <ModalBase @bind-IsOpen="_isModalOpen" Title="検索" Size="modal-lg">
+  <ModalBase @bind-IsOpen="_isModalOpen" Size="modal-lg">
     @if (_isModalOpen) {
       <LinkTableRenderer SearchConditions="@Conditions" ItemSelected="OnItemSelected" ModuleDesign="Field.Module.Design"
                          LinkFieldDesign="Field.Design"/>
@@ -34,18 +34,23 @@
 
 @code {
   private bool _isModalOpen;
-  private SearchCondition Conditions => Field.GetSearchConditionAssignedValue();
+  private SearchCondition? Conditions => Field.GetSearchConditionAssignedValue();
 
   private bool IsSelectOnly => !string.IsNullOrEmpty(Field.Design.DisplayTextVariable);
   private bool IsDisabled => Field.IsEnabled == false;
   private bool IsViewMode => Field.IsViewOnly;
-  private bool HasValue => Field.Value != null;
-  private string DisplayText => Field.DisplayText;
+  private string? DisplayText => Field.DisplayText;
   private string? ViewOnlyValue => Field.Services.AppInfoService.IsDesignMode ? "Link" : DisplayText;
 
   private async Task OpenModal() {
+    if (!string.IsNullOrEmpty(Field.Design.OnSearchButtonClicked))
+    {
+      await Field.Module.ExecuteScriptAsync(Field.Design.OnSearchButtonClicked);
+      return;
+    }
+
     await Task.CompletedTask;
-    _isModalOpen = true;
+    if (Field.GetSearchConditionAssignedValue() != null) _isModalOpen = true;
   }
 
   private void CloseModal() => _isModalOpen = false;
@@ -54,9 +59,9 @@
     await Field.SetValueAsync(value);
   }
 
-  private async Task OnItemSelected(Module obj) {
+  private async Task OnItemSelected(Module? obj) {
     CloseModal();
-    await Field.SetValueAsync(obj);
+    if (obj != null) await Field.SetValueAsync(obj);
   }
 
   private async void Clear() {

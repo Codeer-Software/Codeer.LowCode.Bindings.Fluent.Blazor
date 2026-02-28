@@ -23,9 +23,12 @@
 
   private IEnumerable<Option> GetOptions() {
     yield return new Option("", "");
-    yield return new Option("true", "True");
-    yield return new Option("false", "False");
+    yield return new Option("true", TrueText);
+    yield return new Option("false", FalseText);
   }
+
+  private string TrueText => string.IsNullOrEmpty(Field.Design.TrueText) ? "True" : Field.Services.AppInfoService.Localize(Field.Design.TrueText);
+  private string FalseText => string.IsNullOrEmpty(Field.Design.FalseText) ? "False" : Field.Services.AppInfoService.Localize(Field.Design.FalseText);
 
   private record Option(string Text, string Value);
 

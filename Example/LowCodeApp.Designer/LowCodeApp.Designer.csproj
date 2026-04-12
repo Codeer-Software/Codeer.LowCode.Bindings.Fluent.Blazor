@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
-    <PackageReference Include="Codeer.LowCode.Blazor.Designer" Version="1.2.53" />
+    <PackageReference Include="Codeer.LowCode.Blazor.Designer" Version="1.2.55" />
     <ProjectReference Include="..\LowCodeApp.Client.Shared\LowCodeApp.Client.Shared.csproj" />
     <ProjectReference Include="..\LowCodeApp.Server.Shared\LowCodeApp.Server.Shared.csproj" />
   </ItemGroup>

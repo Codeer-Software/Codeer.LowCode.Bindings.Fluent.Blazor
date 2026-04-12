@@ -3,17 +3,19 @@
 @inherits FluentFieldComponentBase<DateField, FluentDateFieldDesign>
 
 @if (IsViewMode) {
-  <FluentLabel class="d-block py-2">@GetViewOnlyValue()</FluentLabel>
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">@GetViewOnlyValue()</FluentLabel>
 } else {
   @if (Field.Design.IsYearMonthOnly) {
     <input type="month" class="form-control"
            disabled="@IsDisabled"
            id="@WebElementId"
            value="@GetYearMonthValue()"
-           @onchange="@OnYearMonthInput" />
+           @onchange="@OnYearMonthInput"
+           style="@Field.GetStyleString()" />
   } else {
     <FluentDatePicker @bind-Value:get="@GetValue" @bind-Value:set="@RaiseOnValueChanged"
-                      Id="@WebElementId.DomSafeString()" Disabled="@IsDisabled" ReadOnly="IsViewMode" />
+                      Id="@WebElementId.DomSafeString()" Disabled="@IsDisabled" ReadOnly="IsViewMode"
+                      Style="@Field.GetStyleString()" />
   }
 }
 

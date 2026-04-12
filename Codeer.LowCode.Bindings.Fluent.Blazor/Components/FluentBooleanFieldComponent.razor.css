@@ -1,7 +1,6 @@
-div[style*="--background:"] {
-    background: var(--background);
-}
-
-div[style*="--foreground:"] label {
-    color: var(--foreground);
+::deep input,
+::deep fluent-checkbox,
+::deep fluent-switch {
+    background: inherit;
+    color: inherit;
 }

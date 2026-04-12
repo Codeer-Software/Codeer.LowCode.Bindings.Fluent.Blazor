@@ -3,17 +3,17 @@
 @inherits FluentFieldComponentBase<NumberField, FluentNumberFieldDesign>
 
 @if (IsViewMode) {
-  <FluentLabel class="d-block py-2">@GetViewOnlyValue()</FluentLabel>
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">@GetViewOnlyValue()</FluentLabel>
 } else {
   @if (Field.Design.IsSlider) {
     <FluentSlider @bind-Value:get="@SliderValue" @bind-Value:set="@OnSliderChanged"
                   Disabled="@IsDisabled" Id="@WebElementId.DomSafeString()"
-                  Min="@(Min ?? 0)" Max="@(Max ?? 100)" Step="@(Step ?? 1)" Style="width:100%;" />
+                  Min="@(Min ?? 0)" Max="@(Max ?? 100)" Step="@(Step ?? 1)" Style="@($"width:100%;{Field.GetStyleString()}")" />
   } else {
     <FluentNumberField @bind-Value:get="@Field.Value" @bind-Value:set="@RaiseOnValueChanged"
                        Disabled="@IsDisabled" ReadOnly="IsViewMode" Id="@WebElementId.DomSafeString()"
                        Placeholder="@Placeholder" Max="@Max?.ToString()" Min="@Min?.ToString()"
-                       Step="@Step?.ToString()" />
+                       Step="@Step?.ToString()" Style="@Field.GetStyleString()" />
   }
 }
 

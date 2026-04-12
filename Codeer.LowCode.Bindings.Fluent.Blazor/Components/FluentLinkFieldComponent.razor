@@ -6,17 +6,17 @@
 @inherits FluentFieldComponentBase<LinkField, FluentLinkFieldDesign>
 
 @if (IsViewMode) {
-  <FluentLabel class="d-block py-2">@ViewOnlyValue</FluentLabel>
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">@ViewOnlyValue</FluentLabel>
 } else {
   <FluentStack>
     @if (IsSelectOnly) {
-      <FluentTextField Value="@DisplayText" Disabled="@IsDisabled" ReadOnly="true" Id="@WebElementId.DomSafeString()">
+      <FluentTextField Value="@DisplayText" Disabled="@IsDisabled" ReadOnly="true" Id="@WebElementId.DomSafeString()" Style="@Field.GetStyleString()">
         @if (!string.IsNullOrEmpty(DisplayText)) {
           <FluentIcon OnClick="@Clear" Slot="end" Value="@(new Icons.Regular.Size16.Delete())"/>
         }
       </FluentTextField>
     } else {
-      <FluentTextField @bind-Value:get="@DisplayText" @bind-Value:set="RaiseOnValueChanged" Id="@WebElementId.DomSafeString()">
+      <FluentTextField @bind-Value:get="@DisplayText" @bind-Value:set="RaiseOnValueChanged" Id="@WebElementId.DomSafeString()" Style="@Field.GetStyleString()">
         <FluentIcon OnClick="@Clear" Slot="end" Value="@(new Icons.Regular.Size16.Delete())"/>
       </FluentTextField>
     }

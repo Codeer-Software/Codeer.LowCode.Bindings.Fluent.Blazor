@@ -2,7 +2,7 @@
 @using Codeer.LowCode.Blazor.OperatingModel
 @inherits FluentFieldComponentBase<SubmitButtonField, FluentSubmitButtonFieldDesign>
 
-<FluentButton Disabled="IsDisabled" OnClick="@RaiseOnClick" Id="@WebElementId.DomSafeString()" Appearance="FluentDesign.Appearance">
+<FluentButton Disabled="IsDisabled" OnClick="@RaiseOnClick" Id="@WebElementId.DomSafeString()" Appearance="FluentDesign.Appearance" Style="@Field.GetStyleString()">
   @Label
 </FluentButton>
 

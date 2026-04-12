@@ -2,11 +2,11 @@
 @inherits FluentFieldComponentBase<TimeField, FluentTimeFieldDesign>
 
 <div class="d-flex align-items-center">
-  <FluentTimePicker @bind-Value:get="@MoreThanValue" @bind-Value:set="@OnMoreThanChanged" data-search-target="min"/>
+  <FluentTimePicker @bind-Value:get="@MoreThanValue" @bind-Value:set="@OnMoreThanChanged" data-search-target="min" Style="@Field.GetStyleString()"/>
   @if (Field.Design.IsSimpleSearchParameter == false)
   {
     <span>～</span>
-    <FluentTimePicker @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged" data-search-target="max"/>
+    <FluentTimePicker @bind-Value:get="@LessThanValue" @bind-Value:set="@OnLessThanChanged" data-search-target="max" Style="@Field.GetStyleString()"/>
   }
 </div>
 

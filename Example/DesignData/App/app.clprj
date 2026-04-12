@@ -9,11 +9,11 @@
   "Versions": [
     {
       "AssemblyName": "Codeer.LowCode.Blazor",
-      "Version": "1.2.49.0"
+      "Version": "1.2.55.0"
     },
     {
       "AssemblyName": "Codeer.LowCode.Bindings.Fluent.Blazor",
-      "Version": "0.7.0.0"
+      "Version": "0.10.0.0"
     }
   ],
   "LocalizeResourcePath": ""

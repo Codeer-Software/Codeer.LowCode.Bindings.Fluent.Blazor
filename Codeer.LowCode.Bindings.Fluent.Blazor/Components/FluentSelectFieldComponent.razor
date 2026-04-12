@@ -5,11 +5,12 @@
 @inherits FluentFieldComponentBase<SelectField, FluentSelectFieldDesign>
 
 @if (IsViewMode) {
-  <FluentLabel class="d-block py-2">@(ViewOnlyValue)</FluentLabel>
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">@(ViewOnlyValue)</FluentLabel>
 } else {
   <FluentSelect TOption="Option" Items="GetOptions()" Id="@WebElementId.DomSafeString()" @bind-Value:get="SelectedValue"
                 @bind-Value:set="@OnChange" OptionText="@((Option option) => option.Text)"
-                OptionValue="@((Option option) => option.Value)" Disabled="@IsDisabled" />
+                OptionValue="@((Option option) => option.Value)" Disabled="@IsDisabled"
+                Style="@Field.GetStyleString()" />
 }
 
 @code {

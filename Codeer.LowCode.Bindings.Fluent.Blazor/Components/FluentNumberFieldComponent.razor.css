@@ -1,9 +1,5 @@
-input[style*="--background:"],
-span[style*="--background:"] {
-    background: var(--background);
-}
-
-input[style*="--foreground:"],
-span[style*="--foreground:"] {
-    color: var(--foreground);
+::deep input,
+::deep fluent-number-field {
+    background: inherit;
+    color: inherit;
 }

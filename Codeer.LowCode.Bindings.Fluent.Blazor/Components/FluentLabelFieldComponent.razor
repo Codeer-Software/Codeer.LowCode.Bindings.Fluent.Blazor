@@ -3,7 +3,7 @@
 @using Codeer.LowCode.Blazor.Repository.Design
 @inherits FluentFieldComponentBase<LabelField, FluentLabelFieldDesign>
 
-<div @onclick="@RaiseOnClick" @onclick:preventDefault="Field.HasClickHandler" style="@GetStyleString()">
+<div @onclick="@RaiseOnClick" @onclick:preventDefault="Field.HasClickHandler" style="@($"{Field.GetStyleString()}{GetCursorStyle()}")">
   <FluentLabel class="m-0 form-label user-select-none" Typo="@GetTypography()">
     @if (!string.IsNullOrEmpty(Field.Design.Icon))
     {
@@ -50,7 +50,7 @@
     };
   }
 
-  private string? GetStyleString()
+  private string? GetCursorStyle()
   {
     if (Field.IsViewOnly || !Field.IsEnabled || !Field.HasClickHandler) return null;
     return "cursor: pointer";

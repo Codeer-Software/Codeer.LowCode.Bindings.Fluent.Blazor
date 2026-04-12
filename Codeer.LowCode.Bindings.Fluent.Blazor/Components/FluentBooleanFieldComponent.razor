@@ -5,14 +5,14 @@
 @inherits FluentFieldComponentBase<BooleanField, FluentBooleanFieldDesign>
 
 @if (Field.ModuleLayoutType == ModuleLayoutType.List && Field.IsViewOnly) {
-  <FluentLabel class="d-block py-2">
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">
     @ViewOnlyValue
   </FluentLabel>
 } else {
   if (Field.Design.UIType == BooleanUIType.CheckBox) {
-    <FluentCheckbox Id="@WebElementId.DomSafeString()" @bind-Value:get="@IsChecked" @bind-Value:set="@OnChange" Disabled="@(IsDisabled || IsViewMode)" Label="@Label" />
+    <FluentCheckbox Id="@WebElementId.DomSafeString()" @bind-Value:get="@IsChecked" @bind-Value:set="@OnChange" Disabled="@(IsDisabled || IsViewMode)" Label="@Label" Style="@Field.GetStyleString()" />
   } else if (Field.Design.UIType == BooleanUIType.Switch) {
-    <FluentSwitch Id="@WebElementId.DomSafeString()" @bind-Value:get="@IsChecked" @bind-Value:set="@OnChange" Disabled="@(IsDisabled || IsViewMode)" Label="@Label" />
+    <FluentSwitch Id="@WebElementId.DomSafeString()" @bind-Value:get="@IsChecked" @bind-Value:set="@OnChange" Disabled="@(IsDisabled || IsViewMode)" Label="@Label" Style="@Field.GetStyleString()" />
   } else if (Field.Design.UIType == BooleanUIType.ToggleButton) {
     <InternalFluentToggleButton Id="@WebElementId.DomSafeString()" @bind-Value:get="@IsChecked" @bind-Value:set="@OnChange" Disabled="@(IsDisabled || IsViewMode)" Label="@Label" />
   }

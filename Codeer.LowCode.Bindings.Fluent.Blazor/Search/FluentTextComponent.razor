@@ -4,10 +4,10 @@
 @inherits FluentFieldComponentBase<TextField, FluentTextFieldDesign>
 
 <div class="d-flex">
-  <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="@OnChange" Id="@WebElementId"/>
+  <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="@OnChange" Id="@WebElementId" Style="@Field.GetStyleString()"/>
   @if (Field.Design.IsSimpleSearchParameter == false)
   {
-    <FluentSelect TOption="string" @bind-Value:get="@Comparison" @bind-Value:set="@OnComparisonChange">
+    <FluentSelect TOption="string" @bind-Value:get="@Comparison" @bind-Value:set="@OnComparisonChange" Style="@Field.GetStyleString()">
       <FluentOption Value="Like">@Resource.SearchField_MatchCondition_Like</FluentOption>
       <FluentOption Value="Equal">@Resource.SearchField_MatchCondition_Equals</FluentOption>
     </FluentSelect>

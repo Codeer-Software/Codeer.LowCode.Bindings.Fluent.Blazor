@@ -2,7 +2,7 @@
 @using Codeer.LowCode.Blazor.OperatingModel
 @inherits FluentFieldComponentBase<ButtonField, FluentButtonFieldDesign>
 
-<FluentButton Id="@WebElementId.DomSafeString()" Appearance="FluentDesign.Appearance" Disabled="@IsDisabled" OnClick="RaiseOnClick" >
+<FluentButton Id="@WebElementId.DomSafeString()" Appearance="FluentDesign.Appearance" Disabled="@IsDisabled" OnClick="RaiseOnClick" Style="@Field.GetStyleString()">
   @Label
 </FluentButton>
 

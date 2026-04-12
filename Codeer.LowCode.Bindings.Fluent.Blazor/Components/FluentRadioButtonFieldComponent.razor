@@ -5,11 +5,11 @@
 @inherits FluentFieldComponentBase<RadioButtonField, FluentRadioButtonFieldDesign>
 
 @if (Field.ModuleLayoutType == ModuleLayoutType.List && Field.IsViewOnly) {
-  <FluentLabel class="d-block py-2">
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">
     @Field.Value
   </FluentLabel>
 } else {
-  <FluentRadioGroup Disabled="@(IsDisabled || IsViewMode)" @bind-Value:get="@IsChecked" @bind-Value:set="OnChange">
+  <FluentRadioGroup Disabled="@(IsDisabled || IsViewMode)" @bind-Value:get="@IsChecked" @bind-Value:set="OnChange" Style="@Field.GetStyleString()">
     <FluentRadio TValue="bool" Value="false" class="d-none"/>
     <FluentRadio TValue="bool" Value="true" Label="@Label" Id="@WebElementId.DomSafeString()"/>
   </FluentRadioGroup>

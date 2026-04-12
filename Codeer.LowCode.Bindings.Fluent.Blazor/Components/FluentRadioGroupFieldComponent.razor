@@ -4,7 +4,7 @@
 @inherits FieldComponentBase<RadioGroupField>
 
 @if (Field.ModuleLayoutType == ModuleLayoutType.List && Field.Design.PopulateRadioButtons) {
-  <div class="py-2">
+  <div class="py-2" style="@Field.GetStyleString()">
     <FluentRadioGroup Disabled="@(IsDisabled || IsViewMode)" @bind-Value:get="@Field.Value" @bind-Value:set="@OnChange">
       @foreach (var item in Items) {
         <FluentRadio TValue="string" Value="@item.Design.Value" Label="@Field.Services.AppInfoService.Localize(item.Design.Text)"
@@ -13,7 +13,7 @@
     </FluentRadioGroup>
   </div>
 } else {
-  <FluentLabel class="d-block py-2">
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">
     @ViewOnlyValue
   </FluentLabel>
 }

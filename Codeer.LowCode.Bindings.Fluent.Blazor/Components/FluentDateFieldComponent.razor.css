@@ -1,9 +1,6 @@
-input[style*="--background:"],
-span[style*="--background:"] {
-    background: var(--background);
-}
-
-input[style*="--foreground:"],
-span[style*="--foreground:"] {
-    color: var(--foreground);
+::deep input,
+::deep fluent-text-field,
+::deep fluent-date-picker {
+    background: inherit;
+    color: inherit;
 }

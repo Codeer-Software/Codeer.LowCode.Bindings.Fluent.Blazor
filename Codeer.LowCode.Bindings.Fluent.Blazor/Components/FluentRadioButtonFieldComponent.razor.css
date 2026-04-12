@@ -1,7 +1,6 @@
-div[style*="--background:"] {
-    background: var(--background);
-}
-
-div[style*="--foreground:"] label {
-    color: var(--foreground);
+::deep input,
+::deep fluent-radio,
+::deep fluent-radio-group {
+    background: inherit;
+    color: inherit;
 }

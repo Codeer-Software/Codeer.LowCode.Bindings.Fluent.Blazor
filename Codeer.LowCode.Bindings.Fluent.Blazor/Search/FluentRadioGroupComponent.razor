@@ -9,13 +9,13 @@
   <div class="input-group">
     @if (Field.Design.AllowOrSearch) {
       <FluentSelect TOption="string" @bind-SelectedValues:get="SelectedValues" @bind-SelectedValues:set="@OnChangeItems"
-                    Multiple="true">
+                    Multiple="true" Style="@Field.GetStyleString()">
         @foreach (var item in ItemsSource) {
           <FluentOption Value="@item.Value">@item.Key</FluentOption>
         }
       </FluentSelect>
     } else {
-      <FluentSelect TOption="string" @bind-Value:get="@SelectedValue" @bind-Value:set="@OnChange">
+      <FluentSelect TOption="string" @bind-Value:get="@SelectedValue" @bind-Value:set="@OnChange" Style="@Field.GetStyleString()">
         <FluentOption Value="@("")"/>
         @foreach (var item in ItemsSource) {
           <FluentOption Value="@item.Value">@item.Key</FluentOption>

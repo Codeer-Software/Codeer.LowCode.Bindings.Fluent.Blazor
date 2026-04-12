@@ -6,13 +6,13 @@
 
 <FluentStack>
   @if (IsSelectOnly) {
-    <FluentTextField Value="@Field.DisplayText" ReadOnly="true">
+    <FluentTextField Value="@Field.DisplayText" ReadOnly="true" Style="@Field.GetStyleString()">
       @if (HasValue) {
         <FluentIcon OnClick="@Clear" Slot="end" Value="@(new Icons.Regular.Size16.Delete())"/>
       }
     </FluentTextField>
   } else {
-    <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="OnChange"/>
+    <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="OnChange" Style="@Field.GetStyleString()"/>
   }
   <FluentButton IconEnd="@(new Icons.Regular.Size16.Search())" OnClick="OpenModal" data-system="search"/>
 </FluentStack>

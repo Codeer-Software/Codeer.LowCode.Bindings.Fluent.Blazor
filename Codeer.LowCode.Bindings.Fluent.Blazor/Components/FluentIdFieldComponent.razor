@@ -3,10 +3,11 @@
 @inherits FluentFieldComponentBase<IdField, FluentIdFieldDesign>
 
 @if (IsViewMode) {
-  <FluentLabel class="d-block py-2">@ViewOnlyValue</FluentLabel>
+  <FluentLabel class="d-block py-2" style="@Field.GetStyleString()">@ViewOnlyValue</FluentLabel>
 } else {
   <FluentTextField @bind-Value:get="@Value!" @bind-Value:set="@RaiseOnValueChanged" Id="@WebElementId.DomSafeString()"
-                   Disabled="@IsDisabled" ReadOnly="IsViewMode" Placeholder="@Placeholder" />
+                   Disabled="@IsDisabled" ReadOnly="IsViewMode" Placeholder="@Placeholder"
+                   Style="@Field.GetStyleString()" />
 }
 
 @code {

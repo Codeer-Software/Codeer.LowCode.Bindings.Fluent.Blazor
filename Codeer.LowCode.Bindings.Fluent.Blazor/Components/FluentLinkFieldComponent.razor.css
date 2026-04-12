@@ -1,11 +1,7 @@
-div[style*="--background:"] input,
-span[style*="--background:"] {
-  background: var(--background);
-}
-
-div[style*="--foreground:"] input,
-span[style*="--foreground:"] {
-  color: var(--foreground);
+::deep input,
+::deep fluent-text-field {
+  background: inherit;
+  color: inherit;
 }
 
 .border-0 {

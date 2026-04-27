@@ -29,9 +29,6 @@ namespace LowCodeApp.Client.Shared.Samples.AIDocumentAnalyzer
         [ScriptHide]
         public override async Task SetDataAsync(FieldDataBase? fieldDataBase) => await Task.CompletedTask;
 
-        [ScriptHide]
-        public override bool ValidateInput() => true;
-
         public async Task SetDataByFileAsync(IAITextAnalyzerCore core, string fileName, StreamContent content)
         {
             var mod = await core.FileToModuleDataAsync(Module.Design.Name, fileName, content);
